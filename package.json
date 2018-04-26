@@ -4,7 +4,11 @@
 	"description": "Sample app showing simple adding function deployed to cloud",
 	"main": "server/server.js",
 	"scripts": {
+		"postinstall": "browserify client/app.js -o client/bundle.js",
 		"start": "node server/server.js"
 	},
-	"licese": "MIT"
+	"licese": "MIT",
+	"dependencies": {
+		"browserify": "^16.2.0"
+	}
 }

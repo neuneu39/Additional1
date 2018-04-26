@@ -29,6 +29,7 @@ const server = http.createServer(function(request, response) {
 	})
 });
 
-server.listen(3001, function() {
-	console.log('Server listening...');
+const PORT = process.env.PORT || 3001
+server.listen(PORT, function() {
+	console.log(`Server listening on port ${PORT}...`);
 });
