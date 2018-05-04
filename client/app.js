@@ -1,4 +1,4 @@
-const add = require('./adder.js');
+const product = require('./product.js');
 
 class ViewManager {
 
@@ -26,7 +26,7 @@ class ViewManager {
   	  num2 = parseInt(num2, 10);
 
 	  //add the numbers
-	  const sum = add(num1, num2);
+	  const sum = product(num1, num2);
 
 	  //output
 	  this.renderSum(sum);
