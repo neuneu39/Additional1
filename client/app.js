@@ -39,14 +39,24 @@ class ViewManager {
   	  num2 = parseInt(num2, 10);
 
 	  //add the numbers
-	  const sum = product(num1, num2);
+	  let productNum = product(num1, num2);
+	  let i = document.getElementById("form-numbers").length; 
+	  console.log(i);
+	  
+	  while(i > 3) {
+ 	  	let currentInput = document.getElementById(`input-num${i-1}`);console.log(currentInput);
+ 	  	console.log(currentInput);
+ 	  	if (isNaN(currentInput.value)) continue;
+ 	  	productNum = product(productNum, currentInput.value);
+ 	  	i--;
+	  }
 
 	  //output
-	  this.renderSum(sum);
+	  this.renderProduct(productNum);
 	}
 
-	renderSum(sum) {
-		document.querySelector('.sum').textContent = sum;
+	renderProduct(productNum) {
+		document.querySelector('.sum').textContent = productNum;
 	}
 
 	onSubmitNewFactor(event) {
