@@ -12,8 +12,16 @@ class ViewManager {
 	  	document.getElementById('form-additional-numbers')
 	  		.addEventListener(
 				'submit',
-				this.onSubmitNewFactor.bind(this));
-	}
+			//	() => {
+					this.onSubmitNewFactor.bind(this));
+					//this.hasOwnProperty('count') ? this.count += 1 : this.count = 0;
+			//	});
+	/*			() => {
+					this.onSubmitNewFactor;
+					this.hasOwnProperty('count') ? this.count += 1 : this.count = 0;
+				});
+	*/
+	  	}
 
 	onSubmit(event) {
 	  //block form from actually submitting
@@ -43,24 +51,34 @@ class ViewManager {
 
 	onSubmitNewFactor(event) {
 		event.preventDefault();
-
-		this.insertNode(1);
+		//連番とする
+		let num = document.getElementById("form-numbers").length;
+		this.insertNode(num);
 	}
 
+
+
 	insertNode(nodeNum) {
+
 		let formnode = document.getElementById("form-numbers");
 		let makediv = document.createElement("div");
 		let inputNum = document.createElement('input');
 		let classSum = document.querySelector('hr');
-		inputNum.type ="text"
-		inputNum.id = `input-num${nodeNum}`;
+
+		inputNum.id = `input-num${nodeNum}`;		
+		inputNum.type ="text";
+		inputNum.autocomplete = "off";
+
+//		inputNum.id = `input-num${this.count}`;
+
 
 		makediv.appendChild(inputNum);
 
 		formnode.insertBefore(makediv, classSum);
-		//formnode.appendChild(makediv);
-		//inputNum = formnode.appendChild(inputNum);
+	
 	}
+
+
 
 }
 
