@@ -5,9 +5,14 @@ class ViewManager {
 	connectEventHandlers() {
 		//wire up event handler for form submit
 		document.getElementById('form-numbers')
-		  .addEventListener(
-		  	'submit',
-		  	this.onSubmit.bind(this));
+			.addEventListener(
+		  		'submit',
+			  	this.onSubmit.bind(this));
+
+	  	document.getElementById('form-additional-numbers')
+	  		.addEventListener(
+				'submit',
+				this.onSubmitNewFactor.bind(this));
 	}
 
 	onSubmit(event) {
@@ -35,6 +40,28 @@ class ViewManager {
 	renderSum(sum) {
 		document.querySelector('.sum').textContent = sum;
 	}
+
+	onSubmitNewFactor(event) {
+		event.preventDefault();
+
+		this.insertNode(1);
+	}
+
+	insertNode(nodeNum) {
+		let formnode = document.getElementById("form-numbers");
+		let makediv = document.createElement("div");
+		let inputNum = document.createElement('input');
+		let classSum = document.querySelector('hr');
+		inputNum.type ="text"
+		inputNum.id = `input-num${nodeNum}`;
+
+		makediv.appendChild(inputNum);
+
+		formnode.insertBefore(makediv, classSum);
+		//formnode.appendChild(makediv);
+		//inputNum = formnode.appendChild(inputNum);
+	}
+
 }
 
 const viewManager = new ViewManager();
