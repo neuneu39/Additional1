@@ -1,29 +1,29 @@
-const add = require('./adder.js');
+const product = require('./product.js');
 
 class TestSuite{
 	runTests()　{
-		this.testAddPositiveNumbers();
-		this.testAddNegativeNumbers();
-		this.testAddPositiveAndNegativeNumbers();
+		this.testmultiplePositiveNumbers();
+		this.testmultipleNegativeNumbers();
+		this.testmultiplePositiveAndNegativeNumbers();
 	}
 
 	assertEquals(a, b) {
 		return a === b;
 	}
 
-	testAddPositiveNumbers() {
-		const result = this.assertEquals(add(5, 7), 12);
-		console.log(result, 'testAddPositiveNumbers');
+	testmultiplePositiveNumbers() {
+		const result = this.assertEquals(product(5, 7), 35);
+		console.log(result, 'testmultiplePositiveNumbers');
 	}
 
-	testAddNegativeNumbers() {
-		const result = this.assertEquals(add(-5, -7), 12);
-		console.log(add(-5, -7) === -12, 'testAddNegativeNumbers');
+	testmultipleNegativeNumbers() {
+		const result = this.assertEquals(product(-5, -7), 35);
+		console.log(result, 'testmultipleNegativeNumbers');
 	}
 
-	testAddPositiveAndNegativeNumbers() {
-		const result = this.assertEquals(add(5, -7), -2);
-		console.log(result,'testAddPositiveNumbers');
+	testmultiplePositiveAndNegativeNumbers() {
+		const result = this.assertEquals(product(5, -7), -35);
+		console.log(result,'testmultiplePositiveNumbers');
 	}
 
 }

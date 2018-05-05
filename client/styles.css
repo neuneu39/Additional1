@@ -1,4 +1,4 @@
-#form-numbers, #form-additional-numbers, #btn {
+#form-numbers, #form-additional-numbers {
 	width: 200px;
 	margin: 0 auto;
 	text-align: center;
@@ -14,7 +14,7 @@
 	text-align: center;
 }
 
-#form-numbers button,#form-additional-numbers button, #btn input[type=button] {
+#form-numbers button,#form-additional-numbers button {
 	font-size: 36px;
 	margin-top: 50px;
 }

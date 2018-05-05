@@ -12,15 +12,7 @@ class ViewManager {
 	  	document.getElementById('form-additional-numbers')
 	  		.addEventListener(
 				'submit',
-			//	() => {
-					this.onSubmitNewFactor.bind(this));
-					//this.hasOwnProperty('count') ? this.count += 1 : this.count = 0;
-			//	});
-	/*			() => {
-					this.onSubmitNewFactor;
-					this.hasOwnProperty('count') ? this.count += 1 : this.count = 0;
-				});
-	*/
+				this.onSubmitNewFactor.bind(this));
 	  	}
 
 	onSubmit(event) {
@@ -40,19 +32,28 @@ class ViewManager {
 
 	  //add the numbers
 	  let productNum = product(num1, num2);
-	  let i = document.getElementById("form-numbers").length; 
-	  console.log(i);
-	  
-	  while(i > 3) {
- 	  	let currentInput = document.getElementById(`input-num${i-1}`);console.log(currentInput);
- 	  	console.log(currentInput);
- 	  	if (isNaN(currentInput.value)) continue;
- 	  	productNum = product(productNum, currentInput.value);
- 	  	i--;
+	  let numberOfInputs = document.getElementById("form-numbers").length; 
+	  let inputCheck = 0;
+
+	  //if more than 3 inputs
+	  while(numberOfInputs > 3) {
+ 	  	let currentInput = document.getElementById(`input-num${numberOfInputs-1}`).value;
+ 	  	currentInput = parseInt(currentInput, 10);
+ 	  	if (isNaN(currentInput)) {
+ 	  		inputCheck = 1;
+ 	  		break;
+ 	  	}
+ 	  	productNum = product(productNum, currentInput);
+ 	  	numberOfInputs--;
 	  }
 
 	  //output
-	  this.renderProduct(productNum);
+	  if (inputCheck == 1) {
+	  	event.preventDefault();
+	  } else {
+		this.renderProduct(productNum);
+	  }
+
 	}
 
 	renderProduct(productNum) {
@@ -66,29 +67,23 @@ class ViewManager {
 		this.insertNode(num);
 	}
 
-
-
 	insertNode(nodeNum) {
 
 		let formnode = document.getElementById("form-numbers");
 		let makediv = document.createElement("div");
 		let inputNum = document.createElement('input');
-		let classSum = document.querySelector('hr');
+		let refElement = document.querySelector('hr');
 
-		inputNum.id = `input-num${nodeNum}`;		
-		inputNum.type ="text";
-		inputNum.autocomplete = "off";
-
-//		inputNum.id = `input-num${this.count}`;
-
+		inputNum = Object.assign( inputNum, {
+			id: `input-num${nodeNum}`,
+			type: "text",
+			autocomplete: "off"
+		});
 
 		makediv.appendChild(inputNum);
-
-		formnode.insertBefore(makediv, classSum);
+		formnode.insertBefore(makediv, refElement);
 	
 	}
-
-
 
 }
 
