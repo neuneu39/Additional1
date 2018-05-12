@@ -32,15 +32,16 @@ class ViewManager {
 
 	  //add the numbers
 	  let productNum = product(num1, num2);
-		let listOfInputs = document.body.querySelectorAll('.new-factor');
+		let listOfNewInputs = document.body.querySelectorAll('.new-factor');
 		let inputCheck = 0;
 
-		// counts boxes of new factors
-	  listOfInputs.forEach(inputs => {
+		// counts forms of new factors
+	  listOfNewInputs.forEach(inputs => {
 	  	let currentInput = parseInt(inputs.value, 10);
 
 	  	if (isNaN(currentInput)) {
 	  		inputCheck = 1;
+	  		return;
  	  	} else {
  	  		productNum = product(productNum, currentInput);	
  	  	}
@@ -58,15 +59,9 @@ class ViewManager {
 	onClickNewFactor(event) {
 		event.preventDefault();
 		this.insertNode();
-
-//		let target = document.getElementById('text-button');
-//		target.addEventListener('click', () => {
-//			this.insertNode();
-//		}, false);
 	}
 
 	insertNode() {
-
 		let formnode = document.getElementById("form-numbers");
 		let makediv = document.createElement("div");
 		let inputNum = document.createElement('input');
@@ -76,14 +71,12 @@ class ViewManager {
 			className: 'new-factor',
 			id: 'input-num',
 			type: "text",
-//			class: 'new-factor'
 		});
 
 		makediv.appendChild(inputNum);
 		formnode.insertBefore(makediv, refElement);
 	
 	}
-
 }
 
 const viewManager = new ViewManager();
