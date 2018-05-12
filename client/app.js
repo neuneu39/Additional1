@@ -9,11 +9,11 @@ class ViewManager {
 		  		'submit',
 			  	this.onSubmit.bind(this));
 
-	  	document.getElementById('form-additional-numbers')
-	  		.addEventListener(
-				'submit',
-				this.onSubmitNewFactor.bind(this));
-	  	}
+		document.getElementById('text-button')
+			.addEventListener(
+					'click',
+					this.onClickNewFactor.bind(this));
+		}
 
 	onSubmit(event) {
 	  //block form from actually submitting
@@ -37,7 +37,6 @@ class ViewManager {
 
 		// counts boxes of new factors
 	  listOfInputs.forEach(inputs => {
-
 	  	let currentInput = parseInt(inputs.value, 10);
 
 	  	if (isNaN(currentInput)) {
@@ -45,21 +44,8 @@ class ViewManager {
  	  	} else {
  	  		productNum = product(productNum, currentInput);	
  	  	}
-	  })
+	  });
 
-/*
-	  while(numberOfInputs > 1) {
- 	  	let currentInput = document.getElementsByClassName(`input-num-new${numberOfInputs}`).value;
- 	  	currentInput = parseInt(currentInput, 10);
- 	  	if (isNaN(currentInput)) {
- 	  		inputCheck = 1;
- 	  		break;
- 	  	}
- 	  	productNum = product(productNum, currentInput);
- 	  	numberOfInputs--;
-	  }
-*/
-	  //output
 	  if (inputCheck !== 1) {
 			this.renderProduct(productNum);
 	  }
@@ -69,14 +55,17 @@ class ViewManager {
 		document.querySelector('.multiple').textContent = productNum;
 	}
 
-	onSubmitNewFactor(event) {
+	onClickNewFactor(event) {
 		event.preventDefault();
-		//連番とする
-		let num = document.getElementsByClassName("form-numbers").length;
-		this.insertNode(num);
+		this.insertNode();
+
+//		let target = document.getElementById('text-button');
+//		target.addEventListener('click', () => {
+//			this.insertNode();
+//		}, false);
 	}
 
-	insertNode(nodeNum) {
+	insertNode() {
 
 		let formnode = document.getElementById("form-numbers");
 		let makediv = document.createElement("div");
@@ -87,7 +76,6 @@ class ViewManager {
 			className: 'new-factor',
 			id: 'input-num',
 			type: "text",
-			autocomplete: "off"
 //			class: 'new-factor'
 		});
 
