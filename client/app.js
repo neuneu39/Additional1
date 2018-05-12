@@ -28,16 +28,28 @@ class ViewManager {
 
 	  //cast the strings to ints
 	  num1 = parseInt(num1, 10);
-  	  num2 = parseInt(num2, 10);
+  	num2 = parseInt(num2, 10);
 
 	  //add the numbers
 	  let productNum = product(num1, num2);
-	  let numberOfInputs = document.getElementById("form-numbers").length; 
-	  let inputCheck = 0;
+		let listOfInputs = document.body.querySelectorAll('.new-factor');
+		let inputCheck = 0;
 
-	  //if more than 3 inputs
-	  while(numberOfInputs > 3) {
- 	  	let currentInput = document.getElementById(`input-num${numberOfInputs-1}`).value;
+		// counts boxes of new factors
+	  listOfInputs.forEach(inputs => {
+
+	  	let currentInput = parseInt(inputs.value, 10);
+
+	  	if (isNaN(currentInput)) {
+	  		inputCheck = 1;
+ 	  	} else {
+ 	  		productNum = product(productNum, currentInput);	
+ 	  	}
+	  })
+
+/*
+	  while(numberOfInputs > 1) {
+ 	  	let currentInput = document.getElementsByClassName(`input-num-new${numberOfInputs}`).value;
  	  	currentInput = parseInt(currentInput, 10);
  	  	if (isNaN(currentInput)) {
  	  		inputCheck = 1;
@@ -46,10 +58,9 @@ class ViewManager {
  	  	productNum = product(productNum, currentInput);
  	  	numberOfInputs--;
 	  }
-
+*/
 	  //output
 	  if (inputCheck !== 1) {
-	  	//event.preventDefault();
 			this.renderProduct(productNum);
 	  }
 	}
@@ -61,7 +72,7 @@ class ViewManager {
 	onSubmitNewFactor(event) {
 		event.preventDefault();
 		//連番とする
-		let num = document.getElementById("form-numbers").length;
+		let num = document.getElementsByClassName("form-numbers").length;
 		this.insertNode(num);
 	}
 
@@ -73,9 +84,11 @@ class ViewManager {
 		let refElement = document.querySelector('hr');
 
 		inputNum = Object.assign( inputNum, {
-			id: `input-num${nodeNum}`,
+			className: 'new-factor',
+			id: 'input-num',
 			type: "text",
 			autocomplete: "off"
+//			class: 'new-factor'
 		});
 
 		makediv.appendChild(inputNum);
