@@ -48,12 +48,10 @@ class ViewManager {
 	  }
 
 	  //output
-	  if (inputCheck == 1) {
-	  	event.preventDefault();
-	  } else {
-		this.renderProduct(productNum);
+	  if (inputCheck !== 1) {
+	  	//event.preventDefault();
+			this.renderProduct(productNum);
 	  }
-
 	}
 
 	renderProduct(productNum) {
