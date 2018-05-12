@@ -57,7 +57,7 @@ class ViewManager {
 	}
 
 	renderProduct(productNum) {
-		document.querySelector('.sum').textContent = productNum;
+		document.querySelector('.multiple').textContent = productNum;
 	}
 
 	onSubmitNewFactor(event) {
